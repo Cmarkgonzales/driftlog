@@ -1,55 +1,30 @@
 /**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
+ * Midnight Tide design tokens for components that still use StyleSheet.
+ * Prefer Tailwind classes via @/tw for new UI.
  */
 
-import '@/global.css';
-
-import { Platform } from 'react-native';
-
 export const Colors = {
-  light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
-  },
-  dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
-  },
+  midnight: '#0A1020',
+  surface: '#121A2B',
+  elevated: '#1B2740',
+  border: '#29354F',
+  teal: '#3DD9C0',
+  indigo: '#7C83FD',
+  gold: '#F4B860',
+  productive: '#34D399',
+  okay: '#94A3B8',
+  blocked: '#FB7185',
+  textPrimary: '#F8FAFC',
+  textSecondary: '#7C88A8',
 } as const;
 
-export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
+export type ThemeColor = 'text' | 'textSecondary' | 'background' | 'backgroundElement' | 'backgroundSelected';
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
+export const Fonts = {
+  sans: 'Inter',
+  serif: 'InstrumentSerif',
+  mono: 'monospace',
+} as const;
 
 export const Spacing = {
   half: 2,
@@ -61,5 +36,13 @@ export const Spacing = {
   six: 64,
 } as const;
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
+export const BottomTabInset = 80;
 export const MaxContentWidth = 800;
+
+export const LegacyTheme = {
+  text: Colors.textPrimary,
+  textSecondary: Colors.textSecondary,
+  background: Colors.midnight,
+  backgroundElement: Colors.surface,
+  backgroundSelected: Colors.elevated,
+} as const;
